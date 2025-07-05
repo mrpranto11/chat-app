@@ -1,0 +1,117 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #e5e5e5;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+h2 {
+  margin-top: 20px;
+  text-align: center;
+  color: #333;
+}
+
+#chat-container {
+  background: #fff;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  #chat-container {
+    width: 95%;
+    max-width: 600px;
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  }
+}
+
+#messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  max-width: 75%;
+  padding: 10px 15px;
+  margin: 8px 0;
+  border-radius: 20px;
+  line-height: 1.4;
+  font-size: 15px;
+  word-wrap: break-word;
+  animation: popIn 0.3s ease-in;
+}
+
+.me {
+  background-color: #d1f0ff;
+  align-self: flex-end;
+}
+
+.you {
+  background-color: #f0f0f0;
+  align-self: flex-start;
+}
+
+.image-msg {
+  max-width: 200px;
+  border-radius: 15px;
+  margin-top: 5px;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+#input-area {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  background: #fafafa;
+  gap: 6px;
+  align-items: center;
+}
+
+#input {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  outline: none;
+}
+
+#sendBtn, #imageBtn {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+#sendBtn:hover, #imageBtn:hover {
+  background: #45a049;
+}
+
+#typing-indicator {
+  font-style: italic;
+  font-size: 13px;
+  color: #888;
+  padding: 0 15px 5px;
+}
+
+#imageInput {
+  display: none;
+}
