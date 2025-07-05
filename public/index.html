@@ -16,14 +16,25 @@
   <button id="sendBtn">Send</button>
 
   <script>
+    // ✅ Connect to WebSocket backend
     const socket = new WebSocket("wss://chat-app-nw1v.onrender.com");
 
-    socket.onmessage = function(event) {
+    // ✅ When message received from server
+    socket.onmessage = async function(event) {
       const box = document.getElementById('messages');
-      box.innerHTML += `<div>👤 ${event.data}</div>`;
+
+      // 🔁 Convert Blob to text if needed
+      if (event.data instanceof Blob) {
+        const text = await event.data.text();
+        box.innerHTML += `<div>👤 ${text}</div>`;
+      } else {
+        box.innerHTML += `<div>👤 ${event.data}</div>`;
+      }
+
       box.scrollTop = box.scrollHeight;
     };
 
+    // ✅ When "Send" button clicked
     document.getElementById('sendBtn').onclick = function () {
       const input = document.getElementById('input');
       if (input.value) {
