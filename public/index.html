@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebSocket Chat App</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f4f4f4; }
+    #messages { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; background: #fff; }
+    input, button { padding: 10px; font-size: 16px; margin-top: 10px; }
+    button { margin-left: 5px; }
+  </style>
+</head>
+<body>
+  <h2>💬 Realtime Chat App</h2>
+  <div id="messages"></div>
+  <input id="input" type="text" placeholder="Type your message..." />
+  <button id="sendBtn">Send</button>
+
+  <script>
+    const socket = new WebSocket(`wss://${location.host}`);
+
+    socket.onmessage = function(event) {
+      const box = document.getElementById('messages');
+      box.innerHTML += `<div>👤 ${event.data}</div>`;
+      box.scrollTop = box.scrollHeight;
+    };
+
+    document.getElementById('sendBtn').onclick = function () {
+      const input = document.getElementById('input');
+      if (input.value) {
+        socket.send(input.value);
+        input.value = '';
+      }
+    };
+  </script>
+</body>
+</html>
