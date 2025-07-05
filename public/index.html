@@ -16,7 +16,7 @@
   <button id="sendBtn">Send</button>
 
   <script>
-    const socket = new WebSocket(`wss://${location.host}`);
+    const socket = new WebSocket("wss://chat-app-nw1v.onrender.com");
 
     socket.onmessage = function(event) {
       const box = document.getElementById('messages');
